@@ -1,0 +1,123 @@
+# Pack: Infinity Legacy II v4.4
+# Minecraft / loader: 1.21.1 NeoForge
+# Source: Almost Unified recipe dump
+# Last run: 2026-09-06 02:19:27
+# Full dump archive: almost_unified_dump.zip
+# Statistics:
+- Unified Recipes: 2668
+- Duplicate Recipes: 421 (Individual: 1127)
+- Recipes Before: 47621
+- Recipes After: 47026
+- Elapsed Time: 733 ms
+
+# Summary:
+Recipe type                                      |    Unified | Duplicates |   All
+----------------------------------------------------------------------------------
+actuallyadditions:crushing                       |         12 |    6 ( 12) |   112
+actuallyadditions:mining_lens                    |          8 |            |    38
+ae2:charger                                      |          1 |            |     6
+ae2:inscriber                                    |          2 |            |    34
+ae2:transform                                    |          2 |            |    21
+ars_elemental:netherite_upgrade                  |          1 |            |     1
+ars_nouveau:enchanting_apparatus                 |         13 |            |   148
+ars_nouveau:enchantment                          |          4 |            |   103
+ars_nouveau:glyph                                |          3 |            |   126
+ars_nouveau:imbuement                            |          6 |            |    31
+avaritia:no_consume_catalyst_shaped              |          1 |            |     2
+avaritia:shaped_table                            |         14 |            |   123
+avaritia:shapeless_table                         |          1 |            |     7
+bigreactors:fluidizersolid                       |          1 |            |     8
+create:compacting                                |          2 |            |    19
+create:crushing                                  |         42 |            |   214
+create:deploying                                 |          1 |            |   169
+create:mechanical_crafting                       |          2 |            |    29
+create:milling                                   |          1 |            |   203
+create:mixing                                    |         16 |            |   127
+create:pressing                                  |         17 |    4 (  8) |    33
+create:sequenced_assembly                        |          9 |            |    22
+create:splashing                                 |         15 |    3 (  6) |    49
+createaddition:charging                          |          6 |            |    53
+createaddition:rolling                           |          9 |            |    16
+createdieselgenerators:hammering                 |         13 |    1 (  2) |    13
+createdieselgenerators:wire_cutting              |          6 |    2 (  4) |    14
+dankstorage:upgrade                              |          6 |            |    14
+enderio:alloy_smelting                           |          4 |            |    84
+enderio:sag_milling                              |         24 |   10 ( 20) |   140
+extended_industrialization:alloy_smelter         |          9 |            |    15
+forbidden_arcanus:ritual                         |          2 |            |    23
+iceandfire:dragonforge                           |          3 |            |     9
+immersiveengineering:alloy                       |          2 |            |    22
+immersiveengineering:arc_furnace                 |         35 |   18 ( 36) |   197
+immersiveengineering:blast_furnace               |          2 |            |     2
+immersiveengineering:bottling_machine            |          1 |            |    28
+immersiveengineering:crusher                     |         33 |   19 ( 38) |   170
+immersiveengineering:hammer_crushing             |         26 |            |    26
+immersiveengineering:metal_press                 |         38 |   36 ( 72) |   140
+industrialforegoing:dissolution_chamber          |         16 |            |    71
+industrialforegoing:laser_drill_ore              |         19 |            |    31
+ironfurnaces:generator_blasting                  |          7 |            |    12
+mekanism:chemical_conversion                     |          1 |            |    33
+mekanism:combining                               |         13 |            |    85
+mekanism:compressing                             |          4 |            |     8
+mekanism:crushing                                |         14 |   13 ( 26) |   368
+mekanism:enriching                               |         35 |   33 ( 66) |   386
+mekanism:injecting                               |          2 |            |   163
+mekanism:metallurgic_infusing                    |          5 |            |    52
+mekanism:nucleosynthesizing                      |          1 |            |    23
+mekanism:pigment_extracting                      |          1 |            |   194
+mekanism:reaction                                |          3 |            |    17
+minecraft:blasting                               |        165 |   47 (150) |   349
+minecraft:crafting_shaped                        |        674 |   49 (162) | 15250
+minecraft:crafting_shapeless                     |        251 |   50 (171) |  7244
+minecraft:smelting                               |        164 |   46 (150) |   559
+minecraft:smithing_transform                     |         56 |            |   305
+minecraft:stonecutting                           |          8 |            |  2040
+modern_industrialization:assembler               |         15 |            |   395
+modern_industrialization:blast_furnace           |          8 |            |    44
+modern_industrialization:centrifuge              |          4 |            |    23
+modern_industrialization:chemical_reactor        |          2 |            |    98
+modern_industrialization:compressor              |         28 |            |    87
+modern_industrialization:cutting_machine         |         17 |            |   112
+modern_industrialization:electrolyzer            |          4 |            |    13
+modern_industrialization:forge_hammer            |         64 |            |   181
+modern_industrialization:heat_exchanger          |          1 |            |    20
+modern_industrialization:implosion_compressor    |          1 |            |    10
+modern_industrialization:macerator               |         95 |            |   319
+modern_industrialization:mixer                   |          5 |            |   335
+modern_industrialization:packer                  |         58 |            |   305
+modern_industrialization:quarry                  |          5 |            |     7
+modern_industrialization:unpacker                |         33 |            |   197
+modern_industrialization:vacuum_freezer          |          1 |            |    14
+mystianapiary:box_upgrade                        |          9 |            |     9
+mysticalagriculture:enchanter                    |          7 |            |    42
+mysticalagriculture:infusion                     |          3 |            |   171
+naturesaura:altar                                |          4 |            |    38
+naturesaura:animal_spawner                       |          5 |            |    72
+naturesaura:tree_ritual                          |          4 |            |    17
+occultism:crushing                               |         84 |            |   197
+occultism:crystallize                            |         16 |            |    44
+occultism:miner                                  |         46 |            |   138
+occultism:ritual                                 |          2 |            |   158
+occultism:spirit_trade                           |          1 |            |    14
+oritech:atomic_forge                             |          5 |            |    49
+oritech:centrifuge                               |          5 |            |    16
+oritech:centrifuge_fluid                         |          9 |            |    46
+oritech:deep_drill                               |          3 |            |    11
+oritech:foundry                                  |          8 |            |    30
+oritech:grinder                                  |         43 |    3 (  6) |   109
+oritech:particle_collision                       |          1 |            |    11
+oritech:pulverizer                               |         48 |    5 ( 10) |   118
+oritech:refinery                                 |          3 |            |    21
+pneumaticcraft:assembly_laser                    |          2 |            |    19
+powah:energizing                                 |          3 |            |    38
+productivebees:centrifuge                        |         30 |            |   202
+productivemetalworks:block_casting               |         35 |   17 ( 46) |   136
+productivemetalworks:item_casting                |         93 |   59 (142) |   412
+productivemetalworks:item_melting                |          1 |            |   476
+redstonepen:crafting_extended_shapeless          |          3 |            |    13
+simplyswords:smithing_reroll                     |         15 |            |    15
+sophisticatedbackpacks:smithing_backpack_upgrade |          1 |            |     1
+tfmg:casting                                     |          1 |            |     5
+tfmg:industrial_blasting                         |          1 |            |     4
+tfmg:vat_machine_recipe                          |          3 |            |    10
+xycraft_machines:squasher                        |          1 |            |     1
