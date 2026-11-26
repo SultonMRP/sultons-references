@@ -1,0 +1,11 @@
+# Forever minimap buttons
+# Interface 16001.
+
+SexyMap and MinimapButtonButton collect buttons named LibDBIcon10_* parented
+to Minimap. A button parented to UIParent is invisible to those collectors
+even if it looks glued to the minimap.
+
+Use LibDBIcon-1.0 + LibDataBroker-1.1 (LibStub + CallbackHandler).
+Do not vendor LibDBIcon alone.
+
+Addon compartment / minimap: same LibDBIcon register path.

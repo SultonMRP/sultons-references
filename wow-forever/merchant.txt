@@ -1,0 +1,40 @@
+# Forever merchant window
+# Interface 16001.
+
+GetMerchantItemInfo does not exist. Use C_MerchantFrame.GetItemInfo(index).
+GetMerchantItemLink exists. GetMerchantNumItems is stock count, not how many
+MerchantItemN frames are shown.
+
+Slot widget: MerchantItemN is a Frame GetID=0.
+Click target: MerchantItemNItemButton type=Button GetID=N.
+Buyback: MerchantBuyBackItem + MerchantBuyBackItemItemButton. Do not scan as shop.
+Tabs: Merchant id=1, Buyback id=2.
+
+C_MerchantFrame.GetItemInfo fields (plain on this client):
+  price            copper you PAY this merchant (listing)
+  stackCount       pack size
+  numAvailable     1 limited, -1 unlimited
+  name, texture, isPurchasable, isUsable, hasExtendedCost, isQuestStartItem
+
+Listing copper is also on MerchantItemNMoneyFrame gold/silver/copper buttons.
+GetTitleText on MerchantFrame returns a FontString object, not a string.
+
+Events: MERCHANT_SHOW, MERCHANT_UPDATE, MERCHANT_CLOSED, MERCHANT_FILTER_ITEM_UPDATE.
+Hook MerchantFrame OnShow as well as MERCHANT_SHOW (the event may not run your
+handler first).
+
+EnumerateFrames can hit secret IsShown — skip secret booleans.
+
+## Listing vs vendor sell
+
+price on GetItemInfo (merchant) is what you pay the NPC.
+C_Item.GetItemInfo sellPrice (return 11) is sell-to-vendor copper.
+
+Token shop: listingPrice 0, hasExtendedCost true. Do not show Merchant: 0c;
+show the token cost. BoP shop items (bindType 1) still show cost; do not AH-price them.
+
+Forever can change shop prices, pack size, and limited stock. Cache last visit.
+
+Live rows: Silver Contact 4404 listing 1s sell 25c limited.
+Engineer's Ink 10647 listing 20s sell 500c unlimited.
+Damaged Undermine Supply Crate 272151 token cost, bindType 1.

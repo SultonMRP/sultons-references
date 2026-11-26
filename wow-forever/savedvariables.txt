@@ -1,0 +1,22 @@
+# Forever SavedVariables
+# Interface 16001.
+
+Mutating the TOC global (## SavedVariables / PerCharacter) is enough while you
+play. The WTF .lua file is written on logout, disconnect, quit, or /reload
+(C_UI.Reload, hardware event). There is no FlushSavedVariables / SaveVariables API.
+
+PLAYER_LOGOUT is last-chance to change the table before the client dump.
+It does not write the file by itself.
+
+Crash / Alt-F4: last RAM changes are lost.
+Editing WTF while logged in: logout/reload overwrites from RAM.
+
+Read the .lua from disk (another tool, copy for an author): /reload or log off first.
+
+Large tables: keep the working table as the SavedVariables global (or one
+sub-key). Compress inactive shards (other realms) so login parse stays cheap.
+Pack the hot shard on PLAYER_LOGOUT only. C_EncodingUtil SerializeCBOR /
+DeserializeCBOR if present. Do not invent mid-session disk I/O (anti-bot).
+
+Auctionator on this client: AUCTIONATOR_PRICE_DATABASE pointer is live in RAM;
+tooltips see new prices without /reload; the file on disk is old until logout.

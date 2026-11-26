@@ -1,0 +1,24 @@
+# Forever bag slots
+# Interface 16001. Combined bags.
+
+Default bag item buttons are CheckButtons. Do not skip every CheckButton
+(bag *toggles* in some bag addons are also CheckButtons — skip those only when
+there is no GetSlotAndBagID / item link).
+
+itemButton:GetSlotAndBagID() returns slot, bag (same order CanIMogIt uses).
+GetID / GetBagID alone is wrong on combined bags.
+
+Walk:
+  ContainerFrameCombinedBags.Items
+  ContainerFrameContainer.ContainerFrames[].Items
+  ContainerFrameN.Items and ContainerFrameNItemM
+  BankFrame.BankPanel:FindItemButtonByBankTabAndContainerSlotID
+
+Overlay frames that SetAllPoints the slot (CanIMogIt CIMI_AddToFrame and similar)
+sit on top of a FontString parented to the item button. Letters / tags vanish
+even when you painted. Raise your holder: child Frame on the button,
+SetFrameLevel(button+30), FontString OVERLAY.
+
+Bagnon / BagBrother: Item:Update. Do not use Bag:GetBagID as a slot.
+Baganator: RegisterCornerWidget.
+MyBags: reparents combined bag slots; hook ContainerFrameCombinedBags.UpdateItemLayout.

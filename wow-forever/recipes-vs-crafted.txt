@@ -1,0 +1,59 @@
+# Forever recipe tooltips vs crafted item
+# Interface 16001. Pattern / Plans / Schematic / Recipe / Formula / Manual / Design / Technique.
+# Not profession spell titles ("Blacksmithing: X").
+
+On a recipe tooltip, Blizzard mixes two item ids. Pick the wrong one and you
+price, shift-click, or whisper the crafted piece.
+
+## Fields
+
+primary.id            RECIPE (always, bag and AH)
+primary.hyperlink     CRAFTED (always, bag and AH)
+GetItem / TooltipUtil.GetDisplayedItem
+                      RECIPE in bag. CRAFTED on AH.
+type 19 line tooltipID  CRAFTED (embedded item). Empty leftText, then crafted body.
+AH row itemKey.itemID RECIPE
+AH row icon           RECIPE icon. Do not "fix" the list icon from row chrome textures.
+
+Taught spell: tooltipData.lines[n].spellID on line type 38. GetSpell is often nil.
+
+## Rule
+
+listed = tonumber(data.id)
+hyper  = itemID(data.hyperlink)
+shown  = itemID(GetItem or GetDisplayedItem)
+
+if listed and hyper and listed ~= hyper then
+  if shown and shown ~= hyper then use shown else use listed
+else
+  use shown or hyper
+end
+
+AH:  shown == hyper == CRAFTED, listed == RECIPE  -> use listed
+BAG: shown == RECIPE, hyper == CRAFTED, listed == RECIPE -> use shown
+NORMAL: listed == hyper -> use that. Do not rewrite.
+
+## Icon
+
+RECIPE file: GetItemInfoInstant(recipeID) 5th return. Class 9 / Enum.ItemClass.Recipe.
+CRAFTED file: GetItemInfo(hyperlink) texture, or GetItemIconByID(craftedID).
+AH tooltip IconID built from GetItem is the CRAFTED icon (wrong for "this is a recipe").
+
+## Chat
+
+Shift-click / inserted link follows GetItem or hyperlink -> CRAFTED on an AH recipe row.
+Resolve with the rule before price or whisper.
+
+## Reagents on AH recipe tips
+
+No "Reagents:" label. Line is "Name (n), Name, Name (n)" after Use.
+Skip ^Requires. "(30)" there is skill, not quantity.
+
+## Failures
+
+Prefer hyperlink first -> prices the vest, not the plans.
+Prefer GetItem on AH -> same.
+Trust title "Plans:" then still use GetItem -> title is plans, GetItem is vest.
+
+Example: 3609 Plans: Copper Chain Vest (class 9) vs 3471 Copper Chain Vest (mail).
+         253668 Pattern: Woolen Reagent Bag vs 253667 the bag.

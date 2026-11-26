@@ -1,0 +1,15 @@
+# Forever item id corrections
+# Interface 16001. Wiki / Classic lists that do not match this client.
+
+Greater Nether Essence     11175   (16203 is Greater Eternal Essence)
+Unstable Trigger           10560
+Mithril Casing             10561
+Truesilver Transformer     18631
+Inlaid Mithril Cylinder    9060
+Hi-Impact Mithril Slugs    10512
+Hi-Explosive Bomb          10562   (do not swap with the slugs)
+Refined Scale of Onyxia    17967   (that item never shipped here;
+                                    15419 is Warbear Leather)
+Scale of Onyxia            15410
+
+Waylaid crate item ids (this client): waylaid-crates.txt

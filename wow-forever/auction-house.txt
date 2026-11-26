@@ -1,0 +1,30 @@
+# Forever auction house
+# Interface 16001. Classic-like AH, modern C_* mix.
+
+AUCTION_ITEM_LIST_UPDATE is not a valid event (RegisterEvent throws).
+Do not call C_AuctionHouse.ReplicateItems. The live full scan here is the
+summary scan, not replicate.
+
+C_Item / C_Container still apply. Item names and links follow "First Surname"
+chat rules when they appear in chat.
+
+## IsRetail / Camelot pitfall
+
+Some ports set IsRetail = MAINLINE or CAMELOT. Gameplay is Classic-like, so
+Classic-only modules (disenchant reagent breakdown, etc.) ARE loaded, then a
+"if not IsRetail" tooltip gate never runs.
+
+Do not flip IsRetail false globally (AH code uses it). Gate the Classic-only
+block with an explicit Forever/Camelot check.
+
+IsShiftKeyDown() can be a secret. Requiring Shift to show extra tooltip lines
+will hide them even when the player is holding Shift. If the option is on,
+show the lines (or treat secret Shift as "unknown, show").
+
+After extra AddLine, the Classic path often tooltipFrame:Show(). That Show is
+also skipped when the addon thinks Retail — extra lines may not appear until
+the host Show()s. Prefer AddLine only; see tooltips.txt.
+
+Disenchant example (Auctionator 354): GetDisenchantBreakdown exists; the
+tooltip never calls it because IsRetail is true. Enchant tooltips option on
++ Classic breakdown is the fix, not "Forever is Retail."

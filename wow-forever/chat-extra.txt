@@ -1,0 +1,24 @@
+# Forever chat extras
+# Interface 16001. Fade/restamp: chat-frames.txt. Names: client.txt.
+
+CHAT_MSG_WHISPER sender is "First Surname", not "Name-Realm".
+Sent chat does not render color codes.
+
+Item link:
+  |cAARRGGBB|Hitem:...|h[Name]|h|r
+  or |cnIQ...|Hitem:...|h[Name]|h|r
+The closing |h is part of the link. Stripping only the color leaves |h, and a
+"message is only one link" test then fails. Strip |c+8 hex, |cn through next |,
+both |h, |r, and [Name] before deciding the rest is empty.
+
+Whisper: SendChatMessage(text, "WHISPER", nil, "First Surname").
+Language stays nil. Do not pass GetDefaultLanguage or shift the target.
+
+The server drops a whisper to yourself. Draw that line in the whisper window.
+Do not SendChatMessage it. Portrait UnitName is first name only; chat is
+"First Surname". Compare to GetUnitName("player").
+
+Ambiguate splits on a hyphen. A space-separated surname is left intact.
+
+One secret field (message or sender) is not a reason to abort the whole action.
+Fall back to the readable part.

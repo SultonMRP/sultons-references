@@ -1,0 +1,31 @@
+# Forever secure clicks / modifiers
+# Interface 16001. Pair with client.txt secrets and combat.
+
+A parent that owns SecureActionButtons is protected.
+Lua Show / Hide / SetAttribute during InCombatLockdown taints.
+Use SecureHandlerStateTemplate + RegisterStateDriver, then Show/Hide again
+on PLAYER_REGEN_ENABLED.
+
+Unattended spell or item use is still automation. Prefer click or bound key.
+Unprotected BackdropTemplate panels, custom buttons, sliders may Show/Hide/SetPoint
+in combat. Do not wrap those in InCombatLockdown.
+
+## Modifier + bag click (DE / mill / salvage overlay)
+
+Overlay a SecureActionButton on the hovered bag item while a modifier is held.
+Do not UseContainerItem from the tooltip hook.
+
+RegisterAttributeDriver(btn, "visibility", "[mod:alt] show; hide")
+Defer that call if InCombatLockdown (queue PLAYER_REGEN_ENABLED).
+
+IsAltKeyDown / IsShiftKeyDown can be secret. The [mod:alt] driver is the
+hardware-state path. Lua IsAltKeyDown in a tooltip hook may fail closed.
+
+SetAttribute target-bag / target-slot from ItemLocation when not in combat.
+The tooltip hook only positions the overlay; the click is the secure button.
+
+Never WorldFrame / UIParent OnMouseDown or GLOBAL_MOUSE_DOWN (ore click + camera).
+
+Dead / ghost: pcall UnitIsDeadOrGhost / UnitIsGhost; issecretvalue first.
+UnitIsFeignDeath plain true means they are not dead (Hunter FD).
+A ghost is often not in InCombatLockdown. Do not use UnitHealth == 0.

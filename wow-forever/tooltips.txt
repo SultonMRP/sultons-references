@@ -1,0 +1,58 @@
+# Forever GameTooltip
+# Interface 16001. Two fill paths. Do not copy Mainline "Show after AddLine" into a post-call.
+
+Wiki AddLine: https://warcraft.wiki.gg/wiki/API_GameTooltip_AddLine
+Tooltip_API on the wiki is a stub. Forever is listed on AddLine.
+
+## Hard rules (this client)
+
+Never GameTooltip:Show() from AddTooltipPostCall, ProcessInfo, or a hooked
+SetBagItem / SetUnit* / SetHyperlink. Nested Show rebuilds the tip mid-pass
+and clips Equip / Use / talent body.
+
+Blizzard already Show()s after post-calls. Extra lines: AddLine only.
+wrapText true wraps YOUR new line. It does not unwrap Blizzard's existing lines.
+
+Never SetScript on GameTooltip or UIErrorsFrame (other addons wrap those).
+Use HookScript, hooksecurefunc, or TooltipDataProcessor.
+
+Never replace GameTooltip.AddLine. A wrapper taints GameTooltip_AddColoredLine.
+Secret pet-bar colors then error (SetPetAction). Even a pass-through wrapper taints.
+
+Never SetWidth(tip:GetWidth()) on tooltip fontstrings. Each Show feeds the last
+width back in; tips creep wider every hover.
+
+Do not GetBottom / GetHeight / SetHeight / SetPadding the host to fit extra
+lines. Those layout numbers can be secret. Forever sizes the tip.
+
+issecretvalue before gsub, find, #, concat, format. type() still says "string".
+Do not write addon keys onto GameTooltip; use a weak table keyed by the tip.
+
+Minimap ore/herb names are secret. GetMinimapMouseover is empty.
+C_Minimap is tracking, radius, and filters. It does not return gather-node names.
+
+## Processor
+
+TooltipDataProcessor.AddTooltipPostCall — after Blizzard fills; add lines here.
+Filter: if tooltip ~= GameTooltip then return end.
+Item/Spell data.id is the usual id. Skip secret ids/text.
+Do not use PreCall to GetText/edit secret line strings.
+
+Handmade tips (SetOwner -> AddLine -> Show) still need Show because resize is
+OnShow. Processor post-call is not that case.
+
+## Two systems
+
+Normal (bags, spellbook, units, auras, trainer, pet bar):
+  Named owners. Extra lines AddLine(..., true). Never SetWidth(GetWidth()).
+
+Talent tree:
+  PlayerSpellsFrame.TalentsFrame. Nodes are often unnamed (GetName nil);
+  use GetDebugName and walk parents. SpellBook under PlayerSpellsFrame is
+  the normal system, not talents. Nodes reuse GameTooltip with no
+  OnTooltipCleared between them. Wrap with a fixed width + SetMinimumWidth
+  + GameTooltip_CalculatePadding if you must grow the box. Reset min width
+  on hide. Never Show() to resize.
+
+Recipe vs crafted item ids on bag vs AH: recipes-vs-crafted.txt
+Related write-up: https://github.com/SultonMRP/tooltips-and-recipes

@@ -1,0 +1,49 @@
+# Forever Quest class vs quest-bound vs BoP
+# Interface 16001. Live C_Item.GetItemInfo.
+
+Do not treat classID 12 / itemType "Quest" as "cannot vendor / cannot AH".
+Forever files many gather and quest-turn-in mats as Quest/Quest even when they
+are unbound, have a vendor price, and post on the auction house.
+
+## Key off bind, not class
+
+bindType 0 none     can vendor / AH if it has a price
+bindType 1 pickup   BoP. Do not post. Vendor copper may still be > 0.
+bindType 2 equip / 3 use  not the quest-item problem
+bindType 4 quest    real quest-bound. Do not post.
+
+Tooltip when present:
+  "Quest Item" (ITEM_BIND_QUEST) — real quest item
+  Soulbound / ITEM_BIND_ON_PICKUP — do not AH-price it
+
+Do not skip just because classID 12, itemType "Quest", or "used by a quest".
+
+C_Item.GetItemInfo on this client returns 18 values (wiki lists 17).
+Index 11 is sellPrice (sell-to-vendor copper, per item).
+Index 14 is bindType.
+Index 18 can be flavor text (not always empty).
+
+Blizzard Sell Price / tooltip GetMoney is the hovered STACK. Per-item vendor
+is GetItemInfo sellPrice. Compare stack math to the money line.
+
+## Live examples
+
+Small Furry Paw 5134
+  Quest/Quest classID 12, bindType 0, vendor 92c, no "Quest Item" line
+  Quest *mat*, not quest-bound. Can vendor / AH.
+
+Snufflenose Owner's Manual 5897, Deepmoss Egg 5570
+  class 12, bindType 4, vendor 0, Unique, tooltip "Quest Item"
+
+Crate With Holes 5880
+  Consumable/Other classID 0 subclass 8, bindType 4, "Quest Item"
+  Proves bindType 4 (and the tooltip line), not class 12.
+
+Secrets of the Dreamers 209846
+  Reagent class 5, bindType 1 Unique Soulbound, vendor 0. BoP, not quest class.
+
+Sporid Cape 6629
+  Cloth cloak, bindType 1, vendor 677c. BoP can still have a vendor price.
+
+Runed Silver Rod 6339
+  Enchanting trade good, bindType 1, vendor 24c.

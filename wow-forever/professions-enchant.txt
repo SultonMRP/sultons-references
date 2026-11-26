@@ -1,0 +1,19 @@
+# Forever professions / replace-enchant popup
+# Interface 16001.
+
+Enchant button: ProfessionsFrame.CraftingPage.CreateButton (often no GetName).
+Enchanting professionID 333, Enum.Profession 9.
+
+REPLACE_TRADESKILL_ENCHANT is the "replace Intellect +2 with Stamina +3?" Yes.
+EQUIP_BIND_TRADEABLE is a different loot dialog. Do not auto-yes that one.
+
+StaticPopup_OnClick(dialog, 1) -> ReplaceTradeskillEnchant() is allowed only
+during the player's Enchant click (hardware stack).
+
+CreateButton:Click() after C_Timer / UNIT_AURA can still CraftEnchant, then
+Yes is ADDON_ACTION_BLOCKED. Same as chat: two protected calls in one click
+work; a timer between them does not.
+
+CancelUnitBuff does not drop Cat Form (768) / Bear Form (5487) / Dire Bear (9634).
+Secure /cancelaura does. Do not unshift from Lua then click Enchant.
+Player unshifts, then clicks Enchant, then Yes on the same click is fine.

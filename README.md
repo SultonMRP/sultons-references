@@ -17,4 +17,4 @@ Live client notes (Interface 16001). API behavior, not addon source.
 
 | Notes | What’s here |
 | --- | --- |
-| [wow-forever](wow-forever/) | SoftTarget / game-object nameplates, ChatFrameMixin fade/restamp, secrets, TOC |
+| [wow-forever](wow-forever/) | Camelot 16001 client notes: SoftTarget, chat mixin, tooltips, bindType, merchant, trainer, AH, Waylaid crates |

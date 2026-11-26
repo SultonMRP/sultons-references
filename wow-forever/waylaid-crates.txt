@@ -1,0 +1,160 @@
+# Forever Waylaid crate contents
+# Interface 16001. Crate ids matched this client.
+# Greater Nether Essence is 11175 (not 16203). Parts: Unstable Trigger 10560,
+# Mithril Casing 10561, Truesilver Transformer 18631.
+
+Waylaid Crate: Apprentice Herbs: 248682
+Peacebloom: 2447
+Silverleaf: 765
+Earthroot: 2449
+Mageroyal: 785
+Briarthorn: 2450
+
+Waylaid Crate: Apprentice Ore: 248683
+Copper Ore: 2770
+Tin Ore: 2771
+
+Waylaid Crate: Apprentice Textiles: 248684
+Linen Cloth: 2589
+Light Leather: 2318
+
+Waylaid Crate: Apprentice Curiosities: 248685
+Strange Dust: 10940
+Greater Magic Essence: 10939
+Small Glimmering Shard: 10978
+Large Glimmering Shard: 11084
+
+Waylaid Crate: Journeyman Herbs: 248686
+Stranglekelp: 3820
+Bruiseweed: 2453
+Wild Steelbloom: 3355
+Grave Moss: 3369
+Kingsblood: 3356
+
+Waylaid Crate: Journeyman Ore: 248687
+Silver Ore: 2775
+Iron Ore: 2772
+
+Waylaid Crate: Journeyman Textiles: 248688
+Wool Cloth: 2592
+Silk Cloth: 4306
+Medium Leather: 2319
+
+Waylaid Crate: Journeyman Curiosities: 248689
+Soul Dust: 11083
+Greater Astral Essence: 11082
+Small Glowing Shard: 11138
+Large Glowing Shard: 11139
+
+Waylaid Crate: Earthly Expert Herbs: 248690
+Liferoot: 3357
+Fadeleaf: 3818
+Goldthorn: 3821
+Khadgar's Whisker: 3358
+
+Waylaid Crate: Flowering Expert Herbs: 248691
+Wintersbite: 3819
+Firebloom: 4625
+Purple Lotus: 8831
+Arthas' Tears: 8836
+
+Waylaid Crate: Expert Ore: 248692
+Gold Ore: 2776
+Mithril Ore: 3858
+
+Waylaid Crate: Expert Textiles: 248693
+Mageweave Cloth: 4338
+Heavy Leather: 4234
+
+Waylaid Crate: Expert Curiosities: 248694
+Vision Dust: 11137
+Greater Mystic Essence: 11135
+Small Radiant Shard: 11177
+Large Radiant Shard: 11178
+
+Waylaid Crate: Earthly Artisan Herbs: 248695
+Golden Sansam: 13464
+Sungrass: 8838
+Blindweed: 8839
+Ghost Mushroom: 8845
+Gromsblood: 8846
+
+Waylaid Crate: Flowering Artisan Herbs: 248696
+Dreamfoil: 13463
+Mountain Silversage: 13465
+Plaguebloom: 13466
+Icecap: 13467
+
+Waylaid Crate: Artisan Ore: 248697
+Truesilver Ore: 7911
+Thorium Ore: 10620
+Dark Iron Ore: 11370
+
+Waylaid Crate: Artisan Textiles: 248698
+Runecloth: 14047
+Thick Leather: 4304
+Rugged Leather: 8170
+
+Waylaid Crate: Artisan Curiosities: 248699
+Dream Dust: 11176
+Greater Nether Essence: 11175
+Small Brilliant Shard: 14343
+Large Brilliant Shard: 14344
+
+Waylaid Crate: Apprentice Fabrics: 248702
+Cured Light Hide: 4231
+Bolt of Linen Cloth: 2996
+
+Waylaid Crate: Apprentice Ingots: 248703
+Copper Bar: 2840
+Tin Bar: 3576
+Bronze Bar: 2841
+
+Waylaid Crate: Apprentice Parts: 248704
+Handful of Copper Bolts: 4359
+Copper Tube: 4361
+Copper Modulator: 4363
+
+Waylaid Crate: Journeyman Fabrics: 248705
+Bolt of Woolen Cloth: 2997
+Bolt of Silk Cloth: 4305
+Cured Medium Hide: 4233
+
+Waylaid Crate: Journeyman Ingots: 248706
+Silver Bar: 2842
+Iron Bar: 3575
+
+Waylaid Crate: Journeyman Parts: 248707
+Bronze Tube: 4371
+Whirring Bronze Gizmo: 4375
+Bronze Framework: 4382
+Gold Power Core: 10558
+
+Waylaid Crate: Expert Fabrics: 248708
+Bolt of Mageweave: 4339
+Cured Heavy Hide: 4236
+
+Waylaid Crate: Expert Ingots: 248709
+Mithril Bar: 3860
+Steel Bar: 3859
+Gold Bar: 3577
+
+Waylaid Crate: Expert Parts: 248710
+Iron Strut: 4387
+Mithril Tube: 10559
+Unstable Trigger: 10560
+Mithril Casing: 10561
+
+Waylaid Crate: Artisan Fabrics: 248711
+Bolt of Runecloth: 14048
+Cured Thick Hide: 8172
+
+Waylaid Crate: Artisan Ingots: 248712
+Dark Iron Bar: 11371
+Truesilver Bar: 6037
+Thorium Bar: 12359
+
+Waylaid Crate: Artisan Parts: 248713
+Thorium Widget: 15994
+Truesilver Transformer: 18631
+Thorium Tube: 16000

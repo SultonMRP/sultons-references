@@ -1,0 +1,34 @@
+# Forever Beast Training / ClassTrainerFrame
+# Interface 16001.
+
+Forever dropped Classic craft API for Beast Training (GetNumCrafts / DoCraft).
+Spell 5149 opens ClassTrainerFrame with C_Trainer.GetTrainerType() == 3
+(Enum.TrainerType.Pet). Window title is the pet name. Footer is Training Points.
+
+Do not treat this like a class trainer.
+
+C_Trainer.GetTrainerType()                 3 = pet
+Filters dropdown                           C_Trainer.GetCategorizeTrainerUI /
+                                           SetCategorizeTrainerUI
+GetTrainerServiceInfo(i)                   name, "available", icon, level, "Rank N"
+GetTrainerServiceCost(i)                   FIRST return is training points, not gold
+C_PetInfo.GetPetTrainingPoints()           total, spent (unspent = total - spent)
+                                           global GetPetTrainingPoints is missing
+status "available"                         includes ranks the pet already has and
+                                           ranks it is too low-level to learn
+
+## Do not call SetTrainerServiceTypeFilter
+
+SetTrainerServiceTypeFilter("available"|"unavailable"|"used", ...) is Classic.
+On Forever it desyncs the stock Filters dropdown: extra rows appear and the
+dropdown cannot hide them. That pollutes GetNumTrainerServices /
+GetTrainerServiceInfo / BuyTrainerService for EVERY addon, not just the one
+that flipped the filters.
+
+Scan whatever the dropdown already shows. Skip Enum.TrainerType.Pet unless you
+are actually teaching the pet.
+
+BuyTrainerService needs a hardware click.
+
+Pet happiness on this client: 1 unhappy (red), 2 content (yellow), 3 happy (green).
+C_PetInfo.GetPetHappiness / GetPetFoodTypes / CanPetEatItem when present.
