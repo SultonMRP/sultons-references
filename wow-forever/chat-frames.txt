@@ -1,0 +1,56 @@
+# Forever chat frames
+# Interface 16001. ChatFrameMixin, not classic ScrollingMessageFrame.
+
+## What is missing vs retail/classic FrameXML
+
+ChatFrame1 is ChatFrameMixin.
+Globals ChatFrame_OnEvent and ChatFrame_MessageEventHandler are nil.
+debug.getinfo is stripped.
+
+## Fade clock
+
+visibleLines[i].messageInfo.timestamp (session GetTime).
+GetFading / GetTimeVisible / GetFadeDuration work when fading is on.
+SetFading and SetTimeVisible are switches. They are not a second fade ticker.
+
+## Restamp (why some lines never dim)
+
+AddMessage (or layout after it) can rebuild older CHANNEL / SYSTEM rows:
+
+  * same clipped text
+  * new messageInfo table (pointer changes)
+  * timestamp = GetTime() of the NEW event
+  * fontstring alpha resets to 1
+
+Loot and CHAT_MSG_CHANNEL_NOTICE usually keep pointer + timestamp and age out.
+Player CHANNEL / SYSTEM lines often get the new event's clock, so they look
+"stuck bright" while loot and "Changed Channel" fade.
+
+A dark window background makes faded gray look deleted. The lines can still
+be in visibleLines at alpha 0.
+
+## Wake (not restamp)
+
+Mouseover, tab switch, and mouse wheel set visible line alpha to 1 (same
+pointer). Do not click or scroll the window to "check" fade.
+
+Wheel can also rebind a fontstring to an older historyBuffer entry.
+Timestamp going backward is history rebind, not AddMessage copying GetTime.
+
+## Chat addons
+
+Fading modules that only call SetFading / SetTimeVisible are not a second
+clock. They can still correlate with more mixin rebuilds.
+
+Timestamps that rewrite only historyBuffer index 1 (newest line) are not
+the restamp of old CHANNEL rows.
+
+Measure with the cursor off the window. Dump pointer + timestamp per
+visible line if you need to prove restamp vs wake.
+
+## Send
+
+SendChatMessage / C_ChatInfo.SendChatMessage: direct call only.
+pcall or C_Timer -> ADDON_ACTION_BLOCKED.
+Sender/message can be secret during lockdown; issecretvalue first.
+Names are "First Surname".

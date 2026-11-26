@@ -1,0 +1,50 @@
+# Forever SoftTarget / in-world objects
+# Interface 16001. Herbs, ore, chests, fishing bobbers, glow/sparkle overlays.
+
+Glow and sparkle addons paint on the Blizzard **game-object nameplate**.
+There is no separate sparkle API.
+
+## CVars
+
+SoftTargetInteract = 3
+  Client searches for interactable objects.
+  On Forever, SetCVar from ADDON_LOADED / PLAYER_LOGIN / Lua SlashCmdList
+  often does not stick. Typed slash or a real mouse click does
+  (same stack as CameraOrSelectOrMoveStart / TurnOrActionStart).
+  Range and arc can apply while Interact stays 1: the addon looks enabled
+  and the glow is dead. Read GetCVar. Do not trust an "enabled" print.
+
+SoftTargetInteractRange / SoftTargetInteractArc
+  Search cone. These usually apply from Lua.
+
+SoftTargetNameplateInteract = 1
+SoftTargetIconGameObject = 1
+  The client creates / shows the GO nameplate the overlay parents to.
+  Exclusive-mode addons open this gate only when a wanted node is chosen.
+  Gate closed with Interact=3 and no node in front is NORMAL.
+
+## Identity
+
+Token: "softinteract"
+
+A world object often fails UnitExists("softinteract").
+Use UnitIsGameObject. PLAYER_SOFT_INTERACT_CHANGED can still fire.
+
+If C_NamePlate.GetNamePlateForUnit("softinteract") is nil, sweep
+GetNamePlates() / nameplate1..40 for UnitIsGameObject == true with a plate
+(the gate may have just asked the client to show one).
+
+pcall + issecretvalue on GetCVar, UnitName, UnitGUID, plates, InCombatLockdown.
+
+## Do not
+
+HookScript WorldFrame or UIParent OnMouseDown, or GLOBAL_MOUSE_DOWN.
+Those break world ore clicks and right-click camera.
+
+Treat UnitExists("softinteract") == false as "no node".
+Let two glow addons write the same CVars with no snapshot/restore.
+
+## Sound (if you play a chime yourself)
+
+Play on Dialog (user file .ogg) or a SOUNDKIT on SFX.
+.mp3 in the addon folder often does not play on this client.

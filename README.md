@@ -10,3 +10,11 @@ Private projects stay private. This repo is only reference data.
 | --- | --- | --- | --- |
 | [Infinity Legacy II](minecraft/infinity-legacy-ii-4.4/) | 4.4 | NeoForge 1.21.1 | Almost Unified recipe dump |
 | [FTB StoneBlock 4](minecraft/ftb-stoneblock-4/) |  | NeoForge 1.21.1 | KubeJS `server_scripts/tags/items.js` |
+
+## WoW Forever / Camelot
+
+Live client notes (Interface 16001). API behavior, not addon source.
+
+| Notes | What’s here |
+| --- | --- |
+| [wow-forever](wow-forever/) | SoftTarget / game-object nameplates, ChatFrameMixin fade/restamp, secrets, TOC |

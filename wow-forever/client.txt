@@ -1,0 +1,67 @@
+# WoW Forever client facts
+# Interface 16001 (Camelot). Live client, not retail FrameXML.
+
+Do not detect Forever with:
+  select(4, GetBuildInfo()) >= 100000
+16001 is below 100000, so that test picks the Classic branch on a modern API.
+
+Prefer:
+  WOW_PROJECT_CAMELOT
+  WOW_PROJECT_ID  (this install used 18; dump it on your client)
+  ## Interface: 16001
+  AllowLoadGameType camelot
+
+## Names
+
+UnitName, UnitNameUnmodified, UnitFullName return first name, then surname.
+The second return is not a realm.
+Chat, whispers, and player links use "First Surname".
+A whisper to the first name alone does not arrive. Name-Realm does not either.
+GetUnitName returns the full "First Surname" string.
+
+## Secrets
+
+issecretvalue exists. Check it BEFORE ==, #, concat, boolean-test, or table keys.
+type() still says "string" / "number" for secrets.
+pcall(InCombatLockdown). If the return is secret, treat as in combat (fail closed).
+
+No COMBAT_LOG_EVENT_UNFILTERED. No arithmetic on UnitHealth (pass bars raw).
+Minimap ore/herb names can be secret. GetMinimapMouseover is empty.
+
+## Chat send
+
+SendChatMessage / C_ChatInfo.SendChatMessage must run directly from a click,
+slash, or CHAT_MSG_* handler. pcall around the send, or C_Timer after the
+click, returns ADDON_ACTION_BLOCKED. Two sends on the same stack are fine.
+
+Whisper target is "First Surname". Language argument stays nil.
+
+## SetCVar
+
+Not a secure attribute, but combat can refuse the write (GetCVar stays old).
+Some CVars also ignore Lua until a hardware stack (typed slash, real mouse).
+See softtarget-game-objects.txt for SoftTargetInteract.
+
+## Sound
+
+PlaySoundFile(path, "Dialog"|"Ambience"|"Music") uses those mixer faders.
+Addon-folder .ogg often plays. .mp3 often does not.
+Kit PlaySound / C_Sound.PlaySound is the SFX fader, not Dialog.
+
+## Tooltips
+
+Extra lines: AddLine only. Forever sizes the tip.
+Do not GameTooltip:Show from a tooltip post-call.
+Do not GetBottom / SetHeight / SetPadding the host to fit extra lines.
+issecretvalue before string work on tip text.
+
+## TOC
+
+The client reads .toc and Bindings.xml at process start.
+/reload does not reread the TOC. Full quit and login after TOC / Bindings edits.
+/reload is enough when only already-listed Lua/XML changed.
+
+## Events
+
+frame:RegisterEvent of an unknown event throws and can abort the file.
+Check C_EventUtils.IsEventValid first.
